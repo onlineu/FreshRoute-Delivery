@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshRoute | Order Management</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><div class="brand">Fresh<span>Route</span></div><small>Produce order management · Prototype</small></header>
+<main>
+  <section class="intro">
+    <div><h1>Order management</h1><p>A simple workspace for recording orders and preparing deliveries.</p></div>
+    <span class="pill">DEMO VERSION · FICTIONAL DATA</span>
+  </section>
+  <nav aria-label="Main navigation" role="tablist">
+    <button role="tab" id="tab-new" aria-controls="view-new" aria-selected="true" data-view="new">New Order</button>
+    <button role="tab" id="tab-manage" aria-controls="view-manage" aria-selected="false" data-view="manage">Manage Orders</button>
+    <button role="tab" id="tab-delivery" aria-controls="view-delivery" aria-selected="false" data-view="delivery">Delivery Schedule</button>
+  </nav>
+
+  <section id="view-new" class="panel" role="tabpanel" aria-labelledby="tab-new">
+    <h2>Create a new order</h2><p class="sub">Enter customer and produce details. Fields marked * are required.</p>
+    <form id="new-form">
+      <div class="grid">
+        <div class="field"><label for="customer">Customer name *</label><input id="customer" required maxlength="80" autocomplete="name" placeholder="e.g. Alex Morgan"></div>
+        <div class="field"><label for="contact">Contact number or email *</label><input id="contact" required maxlength="100" placeholder="e.g. 0900 123 456"></div>
+        <div class="field"><label for="order-date">Order date *</label><input id="order-date" type="date" required></div>
+        <div class="field"><label for="delivery-date">Delivery date</label><input id="delivery-date" type="date"></div>
+        <div class="field full"><label for="instructions">Delivery instructions (optional)</label><textarea id="instructions" maxlength="300" placeholder="Optional instructions for the delivery team"></textarea></div>
+      </div>
+      <div class="items"><strong>Produce items *</strong><div id="item-list">
+        <div class="itemrow"><input class="produce" aria-label="Produce item" required placeholder="Produce item (e.g. Apples)"><input class="quantity" aria-label="Quantity" type="number" min="1" step="1" required placeholder="Quantity"><button type="button" aria-label="Remove item" class="remove-item">×</button></div>
+      </div><button type="button" class="secondary" id="add-item">+ Add another item</button></div>
+      <div id="new-message" aria-live="polite"></div>
+      <div class="actions"><button class="primary" type="submit">Save order</button><button class="secondary" type="reset">Clear form</button></div>
+    </form>
+  </section>
+
+  <section id="view-manage" class="panel hidden" role="tabpanel" aria-labelledby="tab-manage">
+    <h2>Find and manage an order</h2><p class="sub">Search using the exact order reference. Search and opening can be completed with a keyboard.</p>
+    <form id="search-form" class="searchrow">
+      <label class="hidden" for="search-ref">Order reference</label><input id="search-ref" autocomplete="off" placeholder="Enter order reference, e.g. FR-1042" aria-describedby="search-help">
+      <button class="primary" type="submit">Search order</button>
+    </form>
+    <p class="sub" id="search-help">Use the full reference, including FR- (example: FR-1042).</p>
+    <div id="search-message" aria-live="polite"></div>
+    <div id="order-result"></div>
+  </section>
+
+  <section id="view-delivery" class="panel hidden" role="tabpanel" aria-labelledby="tab-delivery">
+    <h2>Delivery schedule</h2><p class="sub">Choose a date to view orders scheduled for delivery.</p>
+    <div class="searchrow"><div class="field"><label for="schedule-date">Delivery date</label><input type="date" id="schedule-date"></div><button class="primary" id="show-schedule" type="button">Show orders</button></div>
+    <div id="schedule-result" aria-live="polite"></div>
+  </section>
+</main>
+<footer>FreshRoute coursework prototype. Uses fictional sample records and browser local storage only. Do not enter real customer or personal information.</footer>
+<script src="js/app.js" defer></script>
+</body></html>
